@@ -5,9 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:job/user_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key, this.user});
+  final UserModel? user;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,6 +17,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   XFile? image;
+  TextEditingController email = TextEditingController();
+  TextEditingController mobile = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+  TextEditingController details = TextEditingController();
+
+  _HomeScreenState();
+  @override
+  void initState() {
+    super.initState();
+    if (widget.user != null) {
+      email.text = widget.user!.user.email;
+      address.text = widget.user!.user.address;
+      name.text = widget.user!.user.fname;
+      lastname.text = widget.user!.user.lname;
+      mobile.text = widget.user!.user.mobile;
+      email.text = widget.user!.user.email;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 15,
               ),
               TextFormField(
+                controller: name,
                 decoration: const InputDecoration(
                   hintText: 'First Name',
                 ),
@@ -117,6 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20,
               ),
               TextFormField(
+                controller: lastname,
                 decoration: const InputDecoration(
                   hintText: 'Last Name',
                 ),
@@ -125,6 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20,
               ),
               TextFormField(
+                controller: mobile,
                 decoration: const InputDecoration(
                   hintText: 'Mobile Number',
                 ),
@@ -141,6 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20,
               ),
               TextFormField(
+                controller: address,
                 decoration: const InputDecoration(
                   hintText: 'Address',
                 ),
@@ -150,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               TextFormField(
                 maxLines: 4,
+                controller: details,
                 decoration: const InputDecoration(
                   hintText: 'Details',
                 ),

@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       listener: (context, state) {
                         if (state is AuthenticationSuccess) {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
+                            builder: (context) => HomeScreen(user: state.user),
                           ));
                         } else if (state is AuthenticationFailure) {
                           ScaffoldMessenger.of(context)
